@@ -90,7 +90,7 @@ Important :
     * Subitthl = dividing network address space to match an organization's internal network needs
     * On GCP — designated using CIDR notation for network/host division
         * Example: 'subnet-a'. 10.0.1.0/10 
-
+* We can have more than one subnet per region, more than one zone per subnet, the same subnet in different zones.
 
 
 ## VPC Structure - Subnets/IP ranges 
@@ -137,3 +137,192 @@ Important :
 
 ![gcp-subnets-reserved-ip-addresses](../.images/gcp-subnets-reserved-ip-addresses.png)
 
+
+## Address Ranges 
+* Primary Address Ranqe  
+    * Any private RFC 1918 CIDR block 
+    * VM primary internal IP addresses, alias addresses, internal load balancers
+* Secondary Address Rant
+    * Only for alias IP ranges 
+    * Useful for containers or multiple VMS on a single machine 
+
+
+![gcp-subnets-address-ranges](../.images/gcp-subnets-address-ranges.png)
+
+
+## Beware Overlapping Subnet Ranges! 
+* Just like traditional networks, you cannot have two subnet ranges overlap
+* Considerations: 
+    * Subnets in same VPC 
+    * Subnets in multiple peered VPCs
+        * Two auto-mode VPCs cannot be peered 
+    * Subnets in external, interconnected networks 
+    * Larger subnet range (e.g./10 address) can conflict with smaller range subnets that fall in the same range 
+
+
+## Expanding Subnets 
+* If your subnet range is too small, you can expand it Expands only, cannot shrink Example: Expand from /20 to /16 subnet 
+
+## VPC Hands On Demo
+What we will cover:
+* View default network
+* Create auto mode network 
+    * Convert to custom mode network
+* Create custom mode network with custom subnets
+* Expand a subnet
+* Throughout demo - explore Google Cloud SDK commands 
+
+
+
+# IP Addresses
+## IP Addresses on for GCP Resources
+* Every VM needs an IP address to communicate
+* Must have at least one internal address, external address is optional 
+
+## Internal Addresses - Types
+* Assigned from internal DHCP pool 
+    * Ephemeral remains even when stopped
+* Can assign static internal address 
+    * Within assigned subnet range
+* Internal DNS format (FQDN): (instance.name).c.(project-id).internal 
+    * Example: 'my-instance.c.test-projectAnternar 
+
+## External Addresses - Types
+* Ephemeral - temporary 
+    * Assigned when resource created/running 
+    * Released when stopped/deleted
+* Reserved (Static) - preserved through stoppage 
+    * Bound to specific region (e.g., us-centrall)
+    * Billed when not attached to VM
+* Fun fact VM doesn't know external IP - mapped to internal IP
+* No default public DNS, need to use DNS services like Cloud DNS 
+
+## Multiple Network Interface Controllers (NICs) 
+* VM can have exactly one internal extemal IP per VPC
+* VM can have multiple network interfaces (one per VPC), with one internal/external per NIC
+* In other words, a single VM can be on multiple VPCs, with single internal/external address for each VPC 
+
+
+![gcp vpc ip addresses Multiple Network Interface Controllers](../.images/gcp-vpc-ip-addresses-Multiple-Network-Interface-Controllers.png)
+
+
+## Why Multiple IPs/Interfaces?
+
+* Instance as network appliance
+    * Web intrusion/firewall
+    * WAN optimization
+* Application require traffic separation
+    * Data plane traffic from management plane traffic
+
+!! If you create your vm and you attached it to a vpc and later you release that you need another vpc, you must destroy it and create a new one with 2 vpcs !!
+
+## Multiple NIC Limitations
+* Must set up on instance creation
+* 1 NIC per network
+* Cannot overlap subnet ranges
+* Cannot delete interface
+* Up to 8 NICs total 
+    * <= 2 CPUs 2 NICs 
+    * >2 CPUs= 1 NIC per CPU (up to 8) 
+
+## What We Will Cover
+* Create an instance
+    * View network settings 
+    * View ephemeral external IP behavior
+* Reserve an external IP address
+* Create two custom VPC's and a single two NIC instance
+* Command to set up two VPC environments provided in lesson description 
+
+## Firewall Basics
+* Allow/deny traffic to and from instances
+    * Based on configuration
+* Manage both inbound (ingress) and outbound (egress) traffic
+* Defined at network (VPC) level, but enforced for each instance 
+
+![traditional firewall](../.images/traditional-firewall.png)
+
+![gcp firewall](../.images/gcp-firewall.png)
+
+
+
+
+## Firewall Rules
+* Rules manage external access and also access between internal resources
+* Implied 'deny all' ingress
+* Implied 'allow all' egress
+
+If i don’t have any firewall in my vpc by default all ingress and egress traffic will be denied.
+Egress traffic is allowed by default.
+
+
+
+## Firewall components:
+
+![Firewall components](../.images/gcp-vpc-firewall-components.png)
+
+
+
+## Network Tags
+* Instance-level, granular enforcement
+* Apply tag to instance
+* Rule is enforced on only tagged instances and not entire network
+
+
+### Firewall rule:
+* Allow port 22 access
+* Target: network tag - 'allow-ssh'
+* Source filter: 10.2.1.0/24
+
+### Result:
+* Instances in subnet-1 can SSH to instance-2, but not instance-3 outside of subnet-1
+
+![gcp firewall rules](../.images/gcp-vpc-firewall-rules.png)
+
+
+
+# Routing 
+## Routing on GCP
+* Defines paths of network traffic from a VPC resource (i.e., an instance) to other destinations
+    * Each route has a single destination + sigle next hop 
+    * Both within and outside of the VPC 
+    * Allows VPC resources to communicate with each other
+* Most GCP services automatically create system.generated  routes 
+    * Created and removed for you (as needed)
+* Traffic needs to match firewall rules robe delivered
+* Many options similar to firewall rules
+    * Priority: smaller number has a higher priority 
+    * Apply to entire network or network tagged instances 
+
+## System-Generated Routes
+* Default Route
+    * Default route out of your VPC to the external Internet (0.0.0.0/0) 
+    * Provides pathing for Private Google Access  
+    * Can be deleted to isolate VPC from Internet, or replace with custom route
+* Subnet Route 
+    * Define destination path for each VPC subnet ("everything finds everything") 
+    * Cannot be deleted 
+    * Cannot create custom routes that are more specific than subnet route destinations
+        * To restrict traffic between subnet/resources, use firewall rules 
+
+## Custom Routes - What You Create
+* Static and Dynamic Routes
+    * Routes you create, or get created by Cloud Router
+    * Configure your own destination (next hop)
+
+## When to Use Custom Routes
+* Manually created network appliance
+    * NAT Gateway, Load Balancer, Firewall
+    * Per Google, consider GCP managed services instead
+
+## Instance as "Next Hop"
+* Must enable IP forwarding on instance
+    * Must configure on instance creation
+
+
+!["Instace as Next Hop"](../.images/Instance-as-Next-Hop.png)
+
+* Private-instance routes outbound Internet gateway traffic through nat-gateway
+* Nat-gateway has IP Forwarding enabled
+* Destination = 0.0.0.0/0
+* Next Hop = nat-gateway
+* Route applies only to "no-ip" tagged instances 
