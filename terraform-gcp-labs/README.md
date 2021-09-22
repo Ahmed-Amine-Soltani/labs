@@ -34,14 +34,11 @@ Breaking the Network Down
 * Where Google's network connects to the rest of the Internet. • 'Interconnects with other networks"
 * Over 130 exchange points exist around the world. 
 
-
-
+![gcp-pop](../.images/gcp-pop.png)
 
 Important : 
 * Regions by default communicate with each other over google private network.
 * Zone is considered a “single failure domain” so for fault tolerance it’s best to deploy across multiple zones.
-
-![gcp-pop](../.images/gcp-pop.png)
 
 
 
@@ -67,5 +64,76 @@ Important :
 
 ### Example VPC Diagram (Hybrid Network)ing)
 
-![gcp-pop](../.images/example-vpc-diagram.png)
+![gcp-vpc-diagram](../.images/gcp-example-vpc-diagram.png)
+
+
+## VPCs and Projects
+
+* Projects:
+    * Primary resource and billing isolation construct
+    * Hold one or more VPCs per project VPC exists within a single project (with shared VPCs being an exception)
+    * By default, can have up to five separate VPCs per project (is increased via quota management)
+*  Projects separate users, whereas VPCs separate systems 
+
+
+![gcp-vpc-separation](../.images/gcp-vpc-separation.png)
+
+
+# Subnets
+
+## Subnets on GCP VPCs 
+* VPCs do not come with an associated IP range (must create subnets) 
+* Subnet = a logical network partition 
+    * Private IP ranges
+        * RFC 1918 private IP ranges (10.x.x.x/172.16.x.x/192.168.x.x)
+    * Multiple "subnetworks" inside of a larger single network
+    * Subitthl = dividing network address space to match an organization's internal network needs
+    * On GCP — designated using CIDR notation for network/host division
+        * Example: 'subnet-a'. 10.0.1.0/10 
+
+
+
+## VPC Structure - Subnets/IP ranges 
+* VPC can have one or more subnets 
+* Subnet = region based 
+    * Subnet can span zones in same region 
+
+
+![gcp-vpc-structure-subnets-ip-ranges](../.images/gcp-vpc-structure-subnets-ip-ranges.png)
+
+## GCP Subnet Modes 
+* Default Auto Mode, Custom 
+* Default = created with every new GCP Project 
+    * Auto-mode network + pre-made firewall rules
+* Auto Mode Network = automatically created subnet for each region
+    * One subnet for every region
+        * Subnet range of 10.x.x.x/20 per region
+        * Get up and working quickly 
+    * Can manually add additional subnets or convert to custom mode 
+    * Why use auto mode
+        * Easy to set up and use
+        * Predefined IP ranges dont overlap with each other 
+    * Why not to use auto mode 
+        * Not as flexible as custom mode
+        * Dont need subnet for each region
+        * Connecting two different VPCs (VPN/network peering)= overlapping subnets
+        * Often not suitable for production networks
+* Custom Mode Network  
+    * No subnets automatically created -"blank slate" 
+    * Much more flexible 
+    * "Build your Own Network"
+* VPC mode conversions - one way only 
+    * Can covert auto mode to custom mode, but not vice versa 
+
+
+
+## Reserved IP Addresses 
+* Like traditional networks, subnets have the first and last two IVs in range reserved
+* First network address
+* Second: default gateway
+* Second to last future use address
+* Last broadcast address 
+
+
+![gcp-subnets-reserved-ip-addresses](../.images/gcp-subnets-reserved-ip-addresses.png)
 
