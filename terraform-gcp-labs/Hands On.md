@@ -35,7 +35,7 @@ Create firewall rules to allow SSH connections in the new network you just creat
 gcloud compute firewall-rules create vpc-io-lab-allow-ssh \
 	--direction=INGRESS \
 	--priority=1000 \
-	--network=my-network \
+	--network=vpc-io-lab \
 	--action=ALLOW \
 	--rules=tcp:22 \
 	--source-ranges=0.0.0.0/0
@@ -47,7 +47,7 @@ Create firewall rules to allow internal communication inside the network
 gcloud compute firewall-rules create vpc-io-lab-allow-internal \
     --direction=INGRESS \
     --priority=1000 \
-    --network=my-network \
+    --network=vpc-io-lab \
     --action=ALLOW \
     --rules=all \
     --source-ranges=10.1.0.0/24
@@ -105,5 +105,17 @@ gcloud compute routes create nat-route \
 
 
 
-Demonstration 
+## Demonstration 
+
+Virtual machines created
+
+<p align="center"> <img  src="../.images/gcp-nat-gatewat-vms-demostration.png" /> </p>
+
+Nat Gateway ip addresse
+
+<p align="center"> <img  src="../.images/gcp-nat-gatewat-vm-ip.png" /> </p>
+
+Private instance connectivity and ip addresse
+
+<p align="center"> <img  src="../.images/gcp-nat-gatewat-private-instaces-demostration.png" /> </p>
 
