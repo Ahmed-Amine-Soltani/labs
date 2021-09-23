@@ -67,6 +67,14 @@ gcloud compute instances create nat-gateway --network my-network \
     --zone europe-west1-b
 ```
 
+On your NAT gateway instance, configure iptables
+
+we can use the paste command get interface name
+
+```bash
+sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br addr) | awk '$2=="UP" {print $1}') -j MASQUERADE
+```
+
 
 
 Create a new virtual machine without an external IP address
@@ -80,5 +88,19 @@ gcloud compute instances create private-instance --network my-network \
     --no-address \
     --zone europe-west1-b \
     --tags no-ip
+```
+
+
+
+Create a route to send traffic destined to the internet through your gateway instance
+
+```bash
+gcloud compute routes create nat-route \
+    --network my-network \
+    --destination-range 0.0.0.0/0 \
+    --next-hop-instance nat-gateway \
+    --next-hop-instance-zone europe-west1-b \
+    --tags no-ip \
+    --priority 800
 ```
 
