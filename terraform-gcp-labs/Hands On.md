@@ -6,7 +6,7 @@
 
 
 
-
+![gcp firewall rules](../diagrams/nat-gateway-example.drawio.png)
 
 
 
