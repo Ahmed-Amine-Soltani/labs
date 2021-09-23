@@ -8,7 +8,9 @@
 
 <p align="center"> <img  src="../diagrams/nat-gateway-example.drawio.png" /> </p>
 
-## The steps to do 
+
+
+### Solution Number One ( Using virtual machine to act as a NAT gateway)
 
 Create a VPC network to host your virtual machine instances for this scenario
 
@@ -105,7 +107,7 @@ gcloud compute routes create nat-route \
 
 
 
-## Demonstration 
+##### Demonstration 
 
 Virtual machines created
 
@@ -118,4 +120,73 @@ Nat Gateway ip addresse
 Private instance connectivity and ip addresse
 
 <p align="center"> <img  src="../.images/gcp-nat-gatewat-private-instaces-demostration.png" /> </p>
+
+
+
+### Solution Number Two (Using Cloud NAT & Cloud Router)
+
+<p align="center"> <img  src="../diagrams/cloud-nat-example.drawio.png" /> </p>
+
+Create a VPC network to host your virtual machine instances for this scenario
+
+```bash
+gcloud compute networks create vpc-io-lab --subnet-mode custom
+```
+
+
+
+Create subnet for the `europe-west1` region:
+
+```bash
+gcloud compute networks subnets create subnet-europe-west1 \
+	--network vpc-io-lab \
+	--region europe-west1 \
+	--range 10.1.0.0/24
+```
+
+
+
+Create firewall rules to allow SSH connections in the new network you just created
+
+```bash
+gcloud compute firewall-rules create vpc-io-lab-allow-ssh \
+	--direction=INGRESS \
+	--priority=1000 \
+	--network=vpc-io-lab \
+	--action=ALLOW \
+	--rules=tcp:22 \
+	--source-ranges=0.0.0.0/0
+```
+
+Create a new virtual machine without an external IP address
+
+```bash
+gcloud compute instances create private-instance --network vpc-io-lab \
+    --subnet subnet-europe-west1 \
+    --machine-type e2-micro \
+    --image-project=ubuntu-os-cloud \
+    --image-family=ubuntu-1804-lts \
+    --no-address \
+    --zone europe-west1-b \
+    --tags vm-without-external-ip
+```
+
+
+
+Create a Cloud Router
+
+```bash
+gcloud compute routers create nat-router --network=vpc-io-lab \
+	--region=europe-west1
+```
+
+Create a Cloud NAT
+
+```bash
+gcloud compute routers nats create nat-1 \
+	--router=nat-router \
+	--auto-allocate-nat-external-ips \
+	--nat-all-subnet-ip-ranges \
+	--enable-logging
+```
 
