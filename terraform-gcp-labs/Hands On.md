@@ -2,18 +2,20 @@
 
 
 
-# Hands On
-
-# Create a VPC network to host your virtual machine instances for this scenario
+# Hands On - Nat Gateway
 
 
 
 
+
+
+
+## The steps to do 
 
 Create a VPC network to host your virtual machine instances for this scenario
 
 ```bash
-gcloud compute networks create my-network --subnet-mode custom
+gcloud compute networks create vpc-io-lab --subnet-mode custom
 ```
 
 
@@ -22,7 +24,7 @@ Create subnet for the `europe-west1` region:
 
 ```bash
 gcloud compute networks subnets create subnet-europe-west1 \
-	--network my-network \
+	--network vpc-io-lab \
 	--region europe-west1 \
 	--range 10.1.0.0/24
 ```
@@ -32,19 +34,19 @@ gcloud compute networks subnets create subnet-europe-west1 \
 Create firewall rules to allow SSH connections in the new network you just created
 
 ```bash
-gcloud compute firewall-rules create my-network-allow-ssh \
+gcloud compute firewall-rules create vpc-io-lab-allow-ssh \
 	--direction=INGRESS \
 	--priority=1000 \
 	--network=my-network \
 	--action=ALLOW \
 	--rules=tcp:22 \
-	--source-ranges=$(curl ifconfig.io)
+	--source-ranges=0.0.0.0/0
 ```
 
 Create firewall rules to allow internal communication inside the network
 
 ```bash
-gcloud compute firewall-rules create my-network-allow-internal \
+gcloud compute firewall-rules create vpc-io-lab-allow-internal \
     --direction=INGRESS \
     --priority=1000 \
     --network=my-network \
@@ -55,10 +57,10 @@ gcloud compute firewall-rules create my-network-allow-internal \
 
 
 
-Create a virtual machine to act as a NAT gateway on `my-network`
+Create a virtual machine to act as a NAT gateway on `vpc-io-lab`
 
 ```bash
-gcloud compute instances create nat-gateway --network my-network \
+gcloud compute instances create nat-gateway --network vpc-io-lab \
     --subnet subnet-europe-west1 \
     --machine-type e2-micro \
     --image-project=ubuntu-os-cloud \
@@ -79,7 +81,7 @@ sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br add
 Create a new virtual machine without an external IP address
 
 ```bash
-gcloud compute instances create private-instance --network my-network \
+gcloud compute instances create private-instance --network vpc-io-lab \
     --subnet subnet-europe-west1 \
     --machine-type e2-micro \
     --image-project=ubuntu-os-cloud \
@@ -95,11 +97,15 @@ Create a route to send traffic destined to the internet through your gateway ins
 
 ```bash
 gcloud compute routes create nat-route \
-    --network my-network \
+    --network vpc-io-lab \
     --destination-range 0.0.0.0/0 \
     --next-hop-instance nat-gateway \
     --next-hop-instance-zone europe-west1-b \
     --tags no-ip \
-    --priority 800
+    --priority 900
 ```
+
+
+
+Demonstration 
 
