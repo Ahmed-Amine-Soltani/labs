@@ -6,9 +6,7 @@
 
 
 
-![gcp firewall rules](../diagrams/nat-gateway-example.drawio.png)
-
-
+<p align="center"> <img  src="../diagrams/nat-gateway-example.drawio.png" /> </p>
 
 ## The steps to do 
 
@@ -88,7 +86,7 @@ gcloud compute instances create private-instance --network vpc-io-lab \
     --image-family=ubuntu-1804-lts \
     --no-address \
     --zone europe-west1-b \
-    --tags no-ip
+    --tags vm-without-external-ip
 ```
 
 
@@ -101,7 +99,7 @@ gcloud compute routes create nat-route \
     --destination-range 0.0.0.0/0 \
     --next-hop-instance nat-gateway \
     --next-hop-instance-zone europe-west1-b \
-    --tags no-ip \
+    --tags vm-without-external-ip \
     --priority 900
 ```
 
