@@ -67,11 +67,10 @@ gcloud compute instances create nat-gateway --network my-network \
     --zone europe-west1-b
 ```
 
-On your NAT gateway instance, configure iptables
-
-we can use the paste command get interface name
+On your NAT gateway instance, configure **iptables** , we can use the command `paste`  get interface name, and you must enable the **IP forwarding** using `net.ipv4.ip_forward`
 
 ```bash
+sudo sysctl -w net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br addr) | awk '$2=="UP" {print $1}') -j MASQUERADE
 ```
 
