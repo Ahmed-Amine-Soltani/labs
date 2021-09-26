@@ -150,8 +150,7 @@ Important :
     * Only for alias IP ranges 
     * Useful for containers or multiple VMS on a single machine 
 
-
-![gcp-subnets-address-ranges](../.images/gcp-subnets-address-ranges.png)
+<p align="center"> <img width="500" height="200"  src="../images/gcp-subnets-address-ranges.png" /> </p>
 
 
 ## Beware Overlapping Subnet Ranges! 
@@ -226,7 +225,7 @@ What we will cover:
 * Cannot delete interface
 * Up to 8 NICs total 
     * <= 2 CPUs 2 NICs 
-    * >2 CPUs= 1 NIC per CPU (up to 8) 
+    * 2 CPUs= 1 NIC per CPU (up to 8) 
 
 ## What We Will Cover
 * Create an instance
