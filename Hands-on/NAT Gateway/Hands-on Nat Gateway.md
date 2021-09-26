@@ -6,13 +6,13 @@
 
 
 
-<p align="center"> <img width="800" height="300"  src="../../.images/anatomy-of-gcloud-command.png " /> </p>
+<p align="center"> <img width="800" height="300"  src="../../images/anatomy-of-gcloud-command.png " /> </p>
 
 
 
 
 
-### First Solution ( Using virtual machine to act as a NAT gateway)
+## First Solution ( Using virtual machine to act as a NAT gateway)
 
 <p align="center"> <img  src="../../diagrams/nat-gateway-example.drawio.png" /> </p>
 
@@ -86,7 +86,7 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br addr) | awk '$2=="UP" {print $1}') -j MASQUERADE
 ```
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-vms-cli-demostration.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-vms-cli-demostration.png" /> </p>
 
 **Or** you can use :
 
@@ -134,25 +134,25 @@ PS : priority must be higher than the default INTERNET gateway route which is 10
 
 
 
-##### Demonstration of the first solution
+### Demonstration of the first solution
 
 Virtual machines created
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-vms-demostration.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-vms-demostration.png" /> </p>
 
 Nat Gateway ip address
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-vm-ip.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-vm-ip.png" /> </p>
 
 Private instance connectivity and ip address
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-private-instaces-demostration.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-private-instaces-demostration.png" /> </p>
 
 
 
 
 
-To delete the resources created for the first solution
+### To delete the resources created during the first solution
 
 To delete the "nat-route" route run :
 
@@ -188,7 +188,7 @@ gcloud compute networks delete vpc-innovorder-lab --project=innovorder-lab
 
 
 
-### Second solution  (Using Cloud NAT & Cloud Router)
+## Second solution  (Using Cloud NAT & Cloud Router)
 
 <p align="center"> <img  src="../../diagrams/cloud-nat-example.drawio.png" /> </p>
 
@@ -257,15 +257,15 @@ gcloud compute routers nats create nat-1 \
 
 
 
-##### Demonstration of the second solution
+### Demonstration of the second solution
 
 Virtual machines created
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-Cloud-nat-vms-demostration.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-Cloud-nat-vms-demostration.png" /> </p>
 
 Coud NAT created
 
-<p align="center"> <img  src="../../.images/gcp-nat-gatewat-Cloud-Nat-vms-demostration.png" /> </p>
+<p align="center"> <img  src="../../images/gcp-nat-gatewat-Cloud-Nat-vms-demostration.png" /> </p>
 
 
 
@@ -334,7 +334,7 @@ Details on Nat translation request (the `curl` request)
 
 
 
-To delete the resources created for the second solution
+### To delete the resources created during the second solution
 
 To delete the Cloud NAT "nat-1"  run:
 
