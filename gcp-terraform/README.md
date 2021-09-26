@@ -5,8 +5,7 @@ The Power of the Network
 *  It is necessary to support their own apps (multiple apps with 1 billion+ users each). 
 *  The same network that powers Google also powers our GCP resources. 
 
-
-![google-apps](../.images/google-apps.png)
+<p align="center"> <img width="300" height="50"  src="../images/google-apps.png" /> </p>
 
 Breaking the Network Down 
 * Regions
@@ -20,7 +19,11 @@ Breaking the Network Down
  * Typically consists of 3 or more Danes.
  *  Examples: us-centrall, europe-west4, asia-east2 
 
-![gcp-regions](../.images/gcp-regions.png)
+
+
+<p align="center"> <img width="800" height="400"  src="../images/gcp-regions.png" /> </p>
+
+
 
 ## Zones
 * Deployment areas for GCP resources within a region. Multiple individual data center buildings in the geographical region. 
@@ -28,13 +31,15 @@ Breaking the Network Down
 * Considered a "single resource failure domain." For fault tolerance, it is best to deploy applications across multiple zones (and regions, where applicable). 
 * Examples: us-centrall -a, us-centrall -b, asia-east2-a 
 
-![gcp-zones](../.images/gcp-zones.png)
+<p align="center"> <img width="700" height="300"  src="../images/gcp-zones.png" /> </p>
 
 ## Edge Point of Presence (POP)
 * Where Google's network connects to the rest of the Internet. • 'Interconnects with other networks"
 * Over 130 exchange points exist around the world. 
 
-![gcp-pop](../.images/gcp-pop.png)
+
+
+<p align="center"> <img width="800" height="400"  src="../images/gcp-pop.png" /> </p>
 
 Important : 
 * Regions by default communicate with each other over google private network.
@@ -64,7 +69,9 @@ Important :
 
 ### Example VPC Diagram (Hybrid Network)ing)
 
-![gcp-vpc-diagram](../.images/gcp-example-vpc-diagram.png)
+
+
+<p align="center"> <img width="800" height="600"  src="../images/gcp-example-vpc-diagram.png" /> </p>
 
 
 ## VPCs and Projects
@@ -75,8 +82,7 @@ Important :
     * By default, can have up to five separate VPCs per project (is increased via quota management)
 *  Projects separate users, whereas VPCs separate systems 
 
-
-![gcp-vpc-separation](../.images/gcp-vpc-separation.png)
+<p align="center"> <img width="500" height="300"  src="../images/gcp-vpc-separation.png" /> </p>
 
 
 # Subnets
@@ -98,8 +104,7 @@ Important :
 * Subnet = region based 
     * Subnet can span zones in same region 
 
-
-![gcp-vpc-structure-subnets-ip-ranges](../.images/gcp-vpc-structure-subnets-ip-ranges.png)
+<p align="center"> <img width="600" height="350"  src="../images/gcp-vpc-structure-subnets-ip-ranges.png" /> </p>
 
 ## GCP Subnet Modes 
 * Default Auto Mode, Custom 
@@ -134,8 +139,7 @@ Important :
 * Second to last future use address
 * Last broadcast address 
 
-
-![gcp-subnets-reserved-ip-addresses](../.images/gcp-subnets-reserved-ip-addresses.png)
+<p align="center"> <img width="500" height="200"  src="../images/gcp-subnets-reserved-ip-addresses.png" /> </p>
 
 
 ## Address Ranges 
@@ -202,8 +206,7 @@ What we will cover:
 * VM can have multiple network interfaces (one per VPC), with one internal/external per NIC
 * In other words, a single VM can be on multiple VPCs, with single internal/external address for each VPC 
 
-
-![gcp vpc ip addresses Multiple Network Interface Controllers](../.images/gcp-vpc-ip-addresses-Multiple-Network-Interface-Controllers.png)
+<p align="center"> <img width="600" height="350"  src="../images/gcp-vpc-ip-addresses-Multiple-Network-Interface-Controllers.png" /> </p>
 
 
 ## Why Multiple IPs/Interfaces?
@@ -239,9 +242,9 @@ What we will cover:
 * Manage both inbound (ingress) and outbound (egress) traffic
 * Defined at network (VPC) level, but enforced for each instance 
 
-![traditional firewall](../.images/traditional-firewall.png)
+<p align="center"> <img width="500" height="200"  src="../images/traditional-firewall.png" /> </p>
 
-![gcp firewall](../.images/gcp-firewall.png)
+<p align="center"> <img width="500" height="200"  src="../images/gcp-firewall.png" /> </p>
 
 
 
@@ -258,7 +261,7 @@ Egress traffic is allowed by default.
 
 ## Firewall components:
 
-![Firewall components](../.images/gcp-vpc-firewall-components.png)
+<p align="center"> <img width="650" height="300"  src="../images/gcp-vpc-firewall-components.png" /> </p>
 
 
 
@@ -276,7 +279,9 @@ Egress traffic is allowed by default.
 ### Result:
 * Instances in subnet-1 can SSH to instance-2, but not instance-3 outside of subnet-1
 
-![gcp firewall rules](../.images/gcp-vpc-firewall-rules.png)
+
+
+<p align="center"> <img width="500" height="300"  src="../images/gcp-vpc-firewall-rules.png" /> </p>
 
 
 
@@ -318,8 +323,7 @@ Egress traffic is allowed by default.
 * Must enable IP forwarding on instance
     * Must configure on instance creation
 
-
-!["Instace as Next Hop"](../.images/Instance-as-Next-Hop.png)
+<p align="center"> <img width="650" height="150"  src="../images/Instance-as-Next-Hop.png" /> </p>
 
 * Private-instance routes outbound Internet gateway traffic through nat-gateway
 * Nat-gateway has IP Forwarding enabled
