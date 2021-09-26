@@ -26,7 +26,7 @@ resource "google_compute_instance" "nat-gateway-instance" {
   }
 
 
-  metadata_startup_script = file("./scripts/iptable-ip_forward.sh")
+  metadata_startup_script = file("./scripts/iptable-and-ip_forward.sh")
 
   #OR
   #metadata_startup_script = <<SCRIPT
