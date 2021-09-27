@@ -143,11 +143,11 @@ Virtual machines created
 
 <p align="center"> <img  src="../../images/gcp-nat-gatewat-vms-demostration.png" /> </p>
 
-Nat Gateway ip address
+Nat Gateway instance ip address (the `curl ifconfig.io` command displays the public ip address of the instance)
 
 <p align="center"> <img  src="../../images/gcp-nat-gatewat-vm-ip.png" /> </p>
 
-Private instance connectivity and ip address
+Private instance connectivity and ip address (it must be the same as the Nat Gateway instance)
 
 <p align="center"> <img  src="../../images/gcp-nat-gatewat-private-instaces-demostration.png" /> </p>
 
