@@ -4,9 +4,6 @@ gcp_project_name = "innovorder-lab"
 gcp_region       = "europe-west1"
 gcp_zone         = "europe-west1-c"
 
-
-
-
 # VPC
 vpc_name                            = "vpc-io-lab"
 vpc_description                     = "description"
