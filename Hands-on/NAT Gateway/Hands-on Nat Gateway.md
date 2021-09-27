@@ -33,7 +33,7 @@ gcloud compute networks subnets create vpc-innovorder-lab-subnet-europe-west1 \
 	--network=vpc-innovorder-lab \
 	--region=europe-west1 \
 	--range=10.1.0.0/24 \
-	--project=innovorder-lab
+	--project=innovorder-lab 
 ```
 
 
@@ -48,6 +48,7 @@ gcloud compute firewall-rules create vpc-innovorder-lab-allow-ssh \
 	--action=ALLOW \
 	--rules=tcp:22 \
 	--source-ranges=0.0.0.0/0 \
+	--target-tags=allow-ssh \
 	--project=innovorder-lab
 ```
 
@@ -61,6 +62,7 @@ gcloud compute firewall-rules create vpc-innovorder-lab-allow-internal-traffic \
     --action=ALLOW \
     --rules=all \
     --source-ranges=10.1.0.0/24 \
+    --target-tags=allow-internal-traffic \
     --project=innovorder-lab
 ```
 
@@ -76,6 +78,7 @@ gcloud compute instances create nat-gateway-instance --network vpc-innovorder-la
     --image-family=ubuntu-1804-lts \
     --can-ip-forward \
     --zone=europe-west1-b \
+    --tags="allow-ssh,allow-internal-traffic" \
     --project=innovorder-lab
 ```
 
@@ -88,7 +91,7 @@ sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br add
 
 <p align="center"> <img  src="../../images/gcp-nat-gatewat-vms-cli-demostration.png" /> </p>
 
-**Or** you can use :
+**Or** you can use [ **does not work properly yet** ' the paste command applies to my host machine ' ] :
 
 ```bash
 gcloud compute ssh --zone europe-west1-b nat-gateway-instance \
@@ -109,7 +112,7 @@ gcloud compute instances create private-instance \
     --image-family=ubuntu-1804-lts \
     --no-address \
     --zone=europe-west1-b \
-    --tags=instance-without-external-ip \
+    --tags="instance-without-external-ip,allow-ssh,allow-internal-traffic" \
     --project=innovorder-lab
 ```
 
@@ -119,12 +122,12 @@ Create a route to send traffic destined to the internet through your gateway ins
 
 ```bash
 gcloud compute routes create nat-route \
-    --network vpc-innovorder-lab \
-    --destination-range 0.0.0.0/0 \
-    --next-hop-instance nat-gateway-instance \
-    --next-hop-instance-zone europe-west1-b \
-    --tags instance-without-external-ip \
-    --priority 900 \
+    --network=vpc-innovorder-lab \
+    --destination-range=0.0.0.0/0 \
+    --next-hop-instance=nat-gateway-instance \
+    --next-hop-instance-zone=europe-west1-b \
+    --tags=instance-without-external-ip \
+    --priority=900 \
     --project=innovorder-lab
 ```
 
@@ -195,7 +198,9 @@ gcloud compute networks delete vpc-innovorder-lab --project=innovorder-lab
 Create a VPC network to host your virtual machine instances for this scenario
 
 ```bash
-gcloud compute networks create vpc-innovorder-lab --subnet-mode custom
+gcloud compute networks create vpc-innovorder-lab \
+	--subnet-mode=custom \
+	--project=innovorder-lab
 ```
 
 
@@ -204,9 +209,10 @@ Create subnet for the `europe-west1` region:
 
 ```bash
 gcloud compute networks subnets create vpc-innovorder-lab-subnet-europe-west1 \
-	--network vpc-innovorder-lab \
-	--region europe-west1 \
-	--range 10.1.0.0/24
+	--network=vpc-innovorder-lab \
+	--region=europe-west1 \
+	--range=10.1.0.0/24 \
+	--project=innovorder-lab
 ```
 
 
@@ -220,7 +226,9 @@ gcloud compute firewall-rules create vpc-innovorder-lab-allow-ssh \
 	--network=vpc-innovorder-lab \
 	--action=ALLOW \
 	--rules=tcp:22 \
-	--source-ranges=0.0.0.0/0
+	--source-ranges=0.0.0.0/0 \
+	--target-tags=allow-ssh \
+	--project=innovorder-lab
 ```
 
 Create a new virtual machine without an external IP address
@@ -228,12 +236,13 @@ Create a new virtual machine without an external IP address
 ```bash
 gcloud compute instances create private-instance --network vpc-innovorder-lab \
     --subnet=vpc-innovorder-lab-subnet-europe-west1 \
-    --machine-type e2-micro \
+    --machine-type=e2-micro \
     --image-project=ubuntu-os-cloud \
     --image-family=ubuntu-1804-lts \
     --no-address \
-    --zone europe-west1-b \
-    --tags instance-without-external-ip
+    --zone=europe-west1-b \
+    --tags="instance-without-external-ip,allow-ssh" \
+	--project=innovorder-lab
 ```
 
 
@@ -241,8 +250,10 @@ gcloud compute instances create private-instance --network vpc-innovorder-lab \
 Create a Cloud Router
 
 ```bash
-gcloud compute routers create nat-router --network=vpc-innovorder-lab \
-	--region=europe-west1
+gcloud compute routers create nat-router \
+	--network=vpc-innovorder-lab \
+	--region=europe-west1 \
+	--project=innovorder-lab
 ```
 
 Create a Cloud NAT
@@ -252,7 +263,8 @@ gcloud compute routers nats create nat-1 \
 	--router=nat-router \
 	--auto-allocate-nat-external-ips \
 	--nat-all-subnet-ip-ranges \
-	--enable-logging
+	--enable-logging \
+	--project=innovorder-lab
 ```
 
 
