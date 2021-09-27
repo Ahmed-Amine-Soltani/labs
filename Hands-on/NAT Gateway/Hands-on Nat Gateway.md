@@ -91,7 +91,7 @@ sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br add
 
 <p align="center"> <img  src="../../images/gcp-nat-gatewat-vms-cli-demostration.png" /> </p>
 
-**Or** you can use [ **does not work properly yet** ' the paste command applies to my host machine ' ] :
+**Or** you can use [ **does not work properly yet** ' the paste command applies to my host machine so the MASQUERADE rule will take a wrong interface name' ] :
 
 ```bash
 gcloud compute ssh --zone europe-west1-b nat-gateway-instance \
@@ -189,7 +189,9 @@ To delete a network with the name "vpc-innovorder-lab" run :
 gcloud compute networks delete vpc-innovorder-lab --project=innovorder-lab
 ```
 
+### Terraform
 
+to test the solution with terraform you can click [here](https://github.com/Ahmed-Amine-Soltani/innovorder-labs/tree/main/Hands-on/NAT%20Gateway/NAT%20Gateway%20Instance)
 
 ## Second solution  (Using Cloud NAT & Cloud Router)
 
@@ -384,3 +386,6 @@ To delete a network with the name "vpc-innovorder-lab" run :
 gcloud compute networks delete vpc-innovorder-lab --project=innovorder-lab
 ```
 
+### Terraform
+
+to test the solution with terraform you can click [here](https://github.com/Ahmed-Amine-Soltani/innovorder-labs/tree/main/Hands-on/NAT%20Gateway/Cloud%20NAT)
