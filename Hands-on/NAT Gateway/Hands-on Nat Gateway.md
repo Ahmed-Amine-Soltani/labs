@@ -155,7 +155,7 @@ Private instance connectivity and ip address (it must be the same as the Nat Gat
 
 
 
-### To delete the resources created during the first solution
+## Clean up your resources created during the first solution
 
 To delete the "nat-route" route run :
 
@@ -348,7 +348,7 @@ Details on Nat translation request (the `curl` request)
 
 
 
-### To delete the resources created during the second solution
+## Clean up your resources created during the second solution
 
 To delete the Cloud NAT "nat-1"  run:
 

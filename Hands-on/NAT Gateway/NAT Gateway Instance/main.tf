@@ -33,7 +33,7 @@ resource "google_compute_instance" "nat-gateway-instance" {
   #sudo sysctl -w net.ipv4.ip_forward=1
   #sudo iptables -t nat -A POSTROUTING -o $(paste <(ip -o -br link) <(ip -o -br addr) | awk '$2=="UP" {print $1}') -j MASQUERADE
   #SCRIPT
-
+  #https://fabianlee.org/2021/05/28/terraform-invoking-a-startup-script-for-a-gce-google_compute_instance/
 
 }
 
@@ -60,8 +60,9 @@ resource "google_compute_instance" "private-instance" {
     subnetwork = google_compute_subnetwork.vpc_subnet.name
 
     #to create a VM in GCP via terraform without External IP, you can just comment the access_config
+    #https://stackoverflow.com/questions/65773940/provision-a-gcp-vm-instance-with-no-external-ip-via-terraform
     #access_config {
-      #// Ephemeral public IP
+    #// Ephemeral public IP
     #}
   }
 

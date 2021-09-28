@@ -28,7 +28,7 @@ Breaking the Network Down
 ## Zones
 * Deployment areas for GCP resources within a region. Multiple individual data center buildings in the geographical region. 
 * Typically 3 or more per region. 
-* Considered a "single resource failure domain." For fault tolerance, it is best to deploy applications across multiple zones (and regions, where applicable). 
+* Considered a **single resource failure domain**. For fault tolerance, it is best to deploy applications across multiple zones (and regions, where applicable). 
 * Examples: us-centrall -a, us-centrall -b, asia-east2-a 
 
 <p align="center"> <img width="700" height="300"  src="../images/gcp-zones.png" /> </p>
@@ -44,8 +44,6 @@ Breaking the Network Down
 Important : 
 * Regions by default communicate with each other over google private network.
 * Zone is considered a “single failure domain” so for fault tolerance it’s best to deploy across multiple zones.
-
-
 
 * GCP network is global in scope, and the defauk mode of operations. 
 * All traffic between regions (and within POP network) is on Google's private network 
@@ -67,7 +65,7 @@ Important :
 * Can configure private (internal-only) access to other GCP resources 
 * Incoming (ingress) traffic is free and outgoing (egress) traffic has a cost 
 
-### Example VPC Diagram (Hybrid Network)ing)
+### Example VPC Diagram (Hybrid Networking)
 
 
 

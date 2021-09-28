@@ -1,0 +1,15 @@
+to omit user interaction in gcloud
+$ gcloud --quiet, -q -> disable all interactive prompts
+
+https://github.com/hashicorp/terraform-provider-google
+https://github.com/terraform-google-modules/terraform-google-network/tree/v3.4.0
+
+gcloud cheat sheet
+https://gist.github.com/pydevops/cffbd3c694d599c6ca18342d3625af97
+
+terraform google firewall
+https://github.com/lucaspwk/terraform-google-firewall-rules
+
+
+terraform gcp examples
+https://github.com/tasdikrahman/terraform-gcp-examples
