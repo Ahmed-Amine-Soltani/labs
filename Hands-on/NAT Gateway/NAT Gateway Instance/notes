@@ -1,2 +1,0 @@
-to inspect your iptables NAT rules, use the list option:
-sudo iptables -v -L -t nat

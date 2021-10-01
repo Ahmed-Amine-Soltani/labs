@@ -1,0 +1,12 @@
+to inspect your iptables NAT rules, use the list option:
+sudo iptables -v -L -t nat
+
+
+to check my gcloud config ( for example in which project it is pointed)
+gcloud config list
+
+
+
+
+# to test the map & lookup with the terraform workspace
+terraform plan -var-file=dev.tfvars -target=google_compute_network.vpc-test -target=google_compute_subnetwork.eu_west_1-test

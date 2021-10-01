@@ -1,6 +1,7 @@
 resource "google_compute_network" "vpc_network" {
   project                         = var.gcp_project_name
-  name                            = var.vpc_name
+  #name                            =  format("%s-%s", var.vpc_name, terraform.workspace)
+  name  = var.vpc_name
   description                     = var.vpc_description
   auto_create_subnetworks         = var.vpc_auto_create_subnetworks
   mtu                             = var.vpc_mtu
