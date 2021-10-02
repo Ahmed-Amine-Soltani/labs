@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-replicaset
+  namespace: lab
+  labels:
+    app: myapp
+
+spec:
+  template:
+    metadata:
+      name: myapp
+      labels: 
+        component: web
+        app: myapp
+    spec:
+      containers:
+        - name: client
+          image: nginx
+          ports:
+            - containerPort: 80
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: myapp
