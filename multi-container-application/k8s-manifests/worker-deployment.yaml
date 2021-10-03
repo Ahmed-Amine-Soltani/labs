@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+  labels:
+    component: worker
+  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      name: worker
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          image: ahmedaminesoltani/multi-worker:latest

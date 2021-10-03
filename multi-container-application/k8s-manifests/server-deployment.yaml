@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+  labels:
+    component: server
+  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      name: server
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: ahmedaminesoltani/multi-server:latest
+          ports:
+            - containerPort: 5000

@@ -19,7 +19,13 @@ spec:
           image: nginx
           ports:
             - containerPort: 80
-  replicas: 3
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "blue"
+          effect: "NoSchedule"
+      #nodeName: "gke-cluster-1-default-pool-75c1e525-0kms"
+  replicas: 1
   selector: 
     matchLabels:
       app: myapp

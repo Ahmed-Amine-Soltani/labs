@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+  labels:
+    component: web
+  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      name: client
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: ahmedaminesoltani/multi-client:latest
+          ports:
+            - containerPort: 3000
