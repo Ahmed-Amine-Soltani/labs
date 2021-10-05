@@ -9,7 +9,7 @@ spec:
   rules:
    - http:
       paths:
-      - pathType: Exact
+      - pathType: Prefix
         path: /
         backend:
           service:
@@ -17,7 +17,7 @@ spec:
             port: 
               number: 3000
       - pathType: Prefix
-        path: /api/
+        path: /api
         backend:
           service:
             name: server-service
