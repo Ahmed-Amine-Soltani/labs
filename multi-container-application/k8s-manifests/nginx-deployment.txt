@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: nginx
+
+  template:
+    metadata:
+      name: nginx 
+      labels:
+        component: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: ahmedaminesoltani/multi-nginx
+          ports:
+            - containerPort: 80
+
+

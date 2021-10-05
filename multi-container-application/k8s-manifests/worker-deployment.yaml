@@ -19,3 +19,8 @@ spec:
       containers:
         - name: worker
           image: ahmedaminesoltani/multi-worker:latest
+          env:
+            - name: REDIS_HOST 
+              value: redis-service
+            - name: REDIS_PORT
+              value: '6379'
