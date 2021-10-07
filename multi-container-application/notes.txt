@@ -33,6 +33,9 @@ gcloud beta container --project "innovorder-lab" clusters create "cluster-lab-1"
     --enable-shielded-nodes 
     --node-locations "europe-west1-b"
 
+to delete cluster
+gcloud container clusters delete cluster-lab-1 --zone=europe-west1-b
+
 to create kybeconfig entry to use local kubectl with gke cluster
 gcloud container clusters get-credentials cluster-lab-1 --zone europe-west1-b
 
@@ -71,5 +74,19 @@ https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/gke.m
 
 to deploy external dns using helm
 https://medium.com/swlh/extending-gke-with-externaldns-d02c09157793
+
+
+
+
+
+
+
+
+
+
+
+
+to do 
+https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer#optional_configuring_a_static_ip_address
 
 
