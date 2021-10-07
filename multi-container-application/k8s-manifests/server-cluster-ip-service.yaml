@@ -9,4 +9,5 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
+      #name: server-port (pour l'utiliser sur ingress)
       
