@@ -60,6 +60,11 @@ to install specific version
 
 helm & gke 
 https://cloud.google.com/artifact-registry/docs/helm/quickstart
+----------------------------------
+export HELM_EXPERIMENTAL_OCI=1
+export DOCKER_CONFIG=~/.docker #!!!! si je laisse les ~/.docker avec "" comme la doc j'aurai un dossier '~' dans mon pwd
+export HELM_REGISTRY_CONFIG="${DOCKER_CONFIG}/config.json"
+
 
 to deploy external dns in gke
 https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/gke.md
