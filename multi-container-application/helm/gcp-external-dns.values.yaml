@@ -13,3 +13,6 @@ rbac:
 # Set to 'upsert-only' for updates, 'sync' to alow deletes
 # Issue: sync seems to cause records to continually create/delete
 policy: sync
+serviceAccount:
+  create: false
+  name: external-dns
