@@ -1,0 +1,64 @@
+coreDns:
+  enabled: false
+
+kubeDns:
+  enabled: true
+
+prometheusOperator:
+  createCustomResource: false
+
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+
+grafana:
+  service:
+    type: LoadBalancer
+    annotations:
+      cloud.google.com/load-balancer-type: "External"
+      #cloud.google.com/load-balancer-type: "External"
+      #external-dns.alpha.kubernetes.io/hostname: ahmed-grafana.lab.innovorder.io
+  persistence:
+    enabled: true
+    accessModes: ["ReadWriteOnce"]
+    size: 50Gi
+  
+  grafana.ini:
+    paths:
+      data: /var/lib/grafana/
+      logs: /var/log/grafana
+      plugins: /var/lib/grafana/plugins
+      provisioning: /etc/grafana/provisioning
+    analytics:
+      check_for_updates: true
+    log:
+      mode: console
+    grafana_net:
+      url: https://grafana.net
+    auth.google:
+      enabled: true
+      client_id: 267138047285-ajaaq1nop16rferc2fid5apvhqrfaho6.apps.googleusercontent.com
+      client_secret: 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
+      scopes: https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+      auth_url: https://accounts.google.com/o/oauth2/auth
+      token_url: https://accounts.google.com/o/oauth2/token
+      allowed_domains: innovorder.fr
+      allow_sign_up: true
+    server:
+      root_url: http://ahmed-grafana.lab.innovorder.io

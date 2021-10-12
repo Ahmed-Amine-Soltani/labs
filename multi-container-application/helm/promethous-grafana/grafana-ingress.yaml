@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service-grafana
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: ahmed-grafana.lab.innovorder.io
+spec:
+  rules:
+   - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /*
+        backend:
+          service:
+            name: grafana-prometheus
+            port: 
+              number: 80

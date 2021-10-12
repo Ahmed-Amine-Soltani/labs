@@ -44,7 +44,7 @@ gcloud container clusters delete cluster-lab-1 --zone=europe-west1-b
 to create kybeconfig entry to use local kubectl with gke cluster
 gcloud container clusters get-credentials cluster-lab-1 --zone europe-west1-b
 
-to ssh node
+to ssh node (don't forget to add firewall rull to allow ssh trafic)
 gcloud compute ssh node-name  --zone=
 to get node name
 kubectl get nodes -o wide
@@ -94,4 +94,4 @@ to do
 https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer#optional_configuring_a_static_ip_address
 change the secret to configmap or in the applicatif level 
 change the deployment postgress to statfullset
-
+deploy the neg (ingress on the pods)
