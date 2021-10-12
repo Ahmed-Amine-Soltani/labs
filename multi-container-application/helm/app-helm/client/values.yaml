@@ -1,0 +1,16 @@
+service:
+  name: client-service
+  type: ClusterIP
+  component: web
+  port: 3000
+  targetPort: 3000
+
+
+deployment:
+  name: client-deployment
+  component: web
+  replicas: 1
+  templateName: client
+  imageName: client
+  image: ahmedaminesoltani/multi-client:latest
+  containerPort: 3000

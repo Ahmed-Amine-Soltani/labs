@@ -1,0 +1,5 @@
+name: multi-container-client
+description: A Helm chart for my multi container client application
+version: 0.1.0
+
+ 

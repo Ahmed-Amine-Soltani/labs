@@ -4,7 +4,13 @@ metadata:
   name: ingress-service-grafana
   annotations:
     external-dns.alpha.kubernetes.io/hostname: ahmed-grafana.lab.innovorder.io
+    cert-manager.io/cluster-issuer: letsencrypt-prodls
+    acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
+  tls: 
+  - hosts:
+    - ahmed-grafana.lab.innovorder.io
+    secretName: grafana-cert-secret
   rules:
    - http:
       paths:

@@ -29,10 +29,10 @@ prometheus:
 
 grafana:
   service:
-    type: LoadBalancer
+    type: NodePort
     annotations:
       cloud.google.com/load-balancer-type: "External"
-      #cloud.google.com/load-balancer-type: "External"
+      #icloud.google.com/load-balancer-type: "Internal"
       #external-dns.alpha.kubernetes.io/hostname: ahmed-grafana.lab.innovorder.io
   persistence:
     enabled: true
@@ -62,3 +62,5 @@ grafana:
       allow_sign_up: true
     server:
       root_url: http://ahmed-grafana.lab.innovorder.io
+
+      
