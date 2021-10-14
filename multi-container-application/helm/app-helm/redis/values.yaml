@@ -1,0 +1,16 @@
+service:
+  name: redis-service
+  type: ClusterIP
+  component: redis
+  port: 6379
+  targetPort: 6379
+ 
+
+deployment:
+  name: redis-deployment
+  component: redis
+  replicas: 1
+  templateName: redis
+  imageName: redis
+  image: redis
+  containerPort: 6379

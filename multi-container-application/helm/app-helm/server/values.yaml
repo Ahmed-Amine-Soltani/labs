@@ -1,0 +1,16 @@
+service:
+  name: server-service
+  type: ClusterIP
+  component: server
+  port: 5000
+  targetPort: 5000
+
+
+deployment:
+  name: server-deployment
+  component: server
+  replicas: 1
+  templateName: server
+  imageName: server
+  image: ahmedaminesoltani/multi-server:latest
+  containerPort: 5000

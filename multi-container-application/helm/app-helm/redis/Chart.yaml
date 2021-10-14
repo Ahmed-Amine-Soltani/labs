@@ -1,0 +1,3 @@
+name: multi-container-redis
+description: A Helm chart for redis micro-service
+version: 0.1.0

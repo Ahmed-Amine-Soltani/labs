@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    component: {{ .Values.deployment.component }}
+  
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: {{ .Values.deployment.component }}
+  template:
+    metadata:
+      name: {{ .Values.deployment.templateName }}
+      labels:
+        component: {{ .Values.deployment.component }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.imageName }}
+          image: {{ .Values.deployment.image }}
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort }}
+          env:
+              {{- range .Values.env }}
+              - name: {{ .name }}
+                value: {{ .value | quote }}
+              {{- end }} 
+              
+              - name: PGUSER
+                valueFrom:
+                  secretKeyRef:
+                    key:  username
+                    name: pg-auth
+
+              - name: PGPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key:  password
+                    name: pg-auth

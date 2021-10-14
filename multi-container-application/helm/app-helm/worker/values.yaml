@@ -1,0 +1,7 @@
+deployment:
+  name: worker-deployment
+  component: worker
+  replicas: 1
+  templateName: worker
+  imageName: worker
+  image: ahmedaminesoltani/multi-worker:latest

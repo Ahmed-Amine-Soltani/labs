@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      component: {{ .Values.deployment.component }}
+  template:
+    metadata:
+      name: {{ .Values.deployment.templateName }}
+      labels:
+        component: {{ .Values.deployment.component }}
+    spec:
+      volumes:
+        - name: {{ .Values.deployment.volumeName }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.deployment.claimName }}
+      containers:
+        - name: {{ .Values.deployment.imageName }}
+          image: {{ .Values.deployment.image }}
+          ports:
+            - containerPort: {{ .Values.deployment.containerPort }}
+          volumeMounts:
+            - name: {{ .Values.deployment.volumeName }}
+              mountPath: {{ .Values.deployment.mountPath }}
+              subPath: {{ .Values.deployment.subPath }}
+          env:
+            - name: "POSTGRES_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  key:  password
+                  name: pg-auth

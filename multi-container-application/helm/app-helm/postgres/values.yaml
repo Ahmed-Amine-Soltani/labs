@@ -1,0 +1,27 @@
+service:
+  name: postgres-service
+  type: ClusterIP
+  component: redis
+  port: 6379
+  targetPort: 6379
+ 
+
+deployment:
+  name: postgres-deployment
+  component: postgres
+  replicas: 1
+  volumeName: postgres-storage
+  claimName: database-persistent-volume-claim
+  templateName: postgres
+  imageName: postgres
+  image: postgres
+  containerPort: 5432
+  mountPath: /var/lib/postgresql/data
+  subPath: postgres
+
+persistentVolumeClaim:
+  name: database-persistent-volume-claim
+  accessModes: ReadWriteOnce
+  storage: 2Gi
+
+password: password
