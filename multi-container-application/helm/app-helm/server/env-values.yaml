@@ -9,9 +9,10 @@ env:
     value: 5432
   - name: PGDATABASE
     value: postgres
+  #- name: PGUSER
+    #value: postgres
+  #- name: PGPASSWORD
+    #value: azerty123
 
 
 
-# these two values can be set from outside
-username: root
-password: password

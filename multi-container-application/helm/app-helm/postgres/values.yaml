@@ -1,9 +1,9 @@
 service:
   name: postgres-service
   type: ClusterIP
-  component: redis
-  port: 6379
-  targetPort: 6379
+  component: postgres
+  port: 5432
+  targetPort: 5432
  
 
 deployment:
@@ -24,4 +24,6 @@ persistentVolumeClaim:
   accessModes: ReadWriteOnce
   storage: 2Gi
 
+# these two values can be set from outside
+username: root    
 password: password
