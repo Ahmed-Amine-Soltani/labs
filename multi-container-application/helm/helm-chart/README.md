@@ -1,6 +1,6 @@
 ##### postgres
 
-```bash
+```console
 helm install postgres --set username=postgres-username --set  password=postgres-password ahmed-postgres/multi-container-postgres
 ```
 
