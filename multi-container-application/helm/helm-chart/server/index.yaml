@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  multi-container-server:
+  - apiVersion: v2
+    created: "2021-10-15T15:25:11.080210687+02:00"
+    description: A Helm chart for server micro-service
+    digest: fe3f67bfd85857939011f78c2f6ea58b906802107052e3231d48dc445db568a3
+    icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+    name: multi-container-server
+    urls:
+    - multi-container-server-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-15T15:25:11.079877351+02:00"
