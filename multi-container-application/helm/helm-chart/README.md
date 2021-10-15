@@ -18,11 +18,9 @@ helm install client ahmed-client/multi-container-client
 
 ##### server
 
-```bash
-cat env-values.yaml
-```
+env-values.yaml
 
-```
+```yaml
 env:
 	name: REDIS_HOST
 	value: redis-service
@@ -42,9 +40,7 @@ helm install server -f env-values.yaml ahmed-server/multi-container-server
 
 ##### worker
 
-```bash
-cat env-values.yaml
-```
+env-values.yaml
 
 ```yaml
 env:
