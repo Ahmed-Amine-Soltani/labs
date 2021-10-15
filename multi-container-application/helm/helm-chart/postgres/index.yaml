@@ -1,13 +1,13 @@
 apiVersion: v1
 entries:
-  multi-container-redis:
+  multi-container-postgres:
   - apiVersion: v2
-    created: "2021-10-15T15:12:17.076450498+02:00"
-    description: A Helm chart for redis micro-service
-    digest: a4b162767b06ed495ffb0472a7258de0845ca4b4f1ed394cac21eb1ab345dae9
+    created: "2021-10-15T15:29:14.643458637+02:00"
+    description: A Helm chart for postgres micro-service
+    digest: 0e5008e89c2171f87878d4f7e70ba74f4322e0475329abee03446451c685ef0f
     icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
-    name: multi-container-redis
+    name: multi-container-postgres
     urls:
-    - multi-container-redis-0.1.0.tgz
+    - multi-container-postgres-0.1.0.tgz
     version: 0.1.0
-generated: "2021-10-15T15:12:17.076055857+02:00"
+generated: "2021-10-15T15:29:14.643055364+02:00"
