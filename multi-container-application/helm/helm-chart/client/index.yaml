@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  multi-container-client:
+  - apiVersion: v2
+    created: "2021-10-15T14:00:17.223844664+02:00"
+    description: A Helm chart for client micro-service
+    digest: 93e75dc718a1d839ac91ac0085f02c4926c13eb037b800fa5485c91c378279ef
+    icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+    name: multi-container-client
+    urls:
+    - multi-container-client-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-15T14:00:17.223505295+02:00"
