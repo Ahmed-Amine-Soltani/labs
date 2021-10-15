@@ -22,16 +22,16 @@ env-values.yaml
 
 ```yaml
 env:
-	name: REDIS_HOST
-	value: redis-service
-	name: REDIS_PORT
-	value: 6379
-	name: PGHOST
-	value: postgres-service
-	name: PGPORT
-	value: 5432
-	name: PGDATABASE
-	value: postgres
+   - name: REDIS_HOST
+     value: redis-service 
+   - name: REDIS_PORT
+     value: 6379
+   - name: PGHOST
+     value: postgres-service
+   - name: PGPORT
+     value: 5432
+   - name: PGDATABASE
+     value: postgres
 ```
 
 ```bash
@@ -44,10 +44,10 @@ env-values.yaml
 
 ```yaml
 env:
-	name: REDIS_HOST
-	value: redis-service
-	name: REDIS_PORT
-	value: 6379
+  - name: REDIS_HOST
+  - value: redis-service
+  - name: REDIS_PORT
+  - value: 6379
 ```
 
 ```bash
