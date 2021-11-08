@@ -1,0 +1,4 @@
+env:
+   - name: REDIS_HOST
+     value: redis-service 
+   - name: REDIS_POR
