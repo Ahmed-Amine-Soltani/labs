@@ -1,4 +1,4 @@
-#### haproxy modification
+#### haproxy modifications
 
 ##### to define basic authentication on HAProxy
 
@@ -52,5 +52,11 @@ enable ssl option and add the path to the certificate
 ```cfg
 frontend stats
   bind *:9000 ssl crt /tmp/cert/cert.pem
+```
+
+restart haproxy service
+
+```shell
+$ systemctl restart haproxy.service
 ```
 
