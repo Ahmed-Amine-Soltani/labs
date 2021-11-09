@@ -181,7 +181,7 @@ Output
 
 To verify the ability to expose applications using a [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Expose the `nginx` deployment using a [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) service:
+Expose the nginx deployment using a [LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) service:
 
 ```bash
 kubectl expose deployment test-nginx --port=80 --type=LoadBalancer
@@ -196,7 +196,7 @@ kubectl get svc test-nginx --watch -o jsonpath="{.status.loadBalancer}"
 Retrieve the external IP address of a worker instance:
 
 ```shell
-EXTERNAL_IP=$(kubectl get service nginx -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+EXTERNAL_IP=$(kubectl get service test-nginx -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 ```
 
 Make an HTTP request using the external IP address:
@@ -207,8 +207,16 @@ curl --head http://${EXTERNAL_IP}
 
 Output
 
-```
-nginx version: nginx/1.21.3
+```shell
+HTTP/1.1 200 OK
+Server: nginx/1.21.3
+Date: Tue, 09 Nov 2021 14:34:48 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 07 Sep 2021 15:21:03 GMT
+Connection: keep-alive
+ETag: "6137835f-267"
+Accept-Ranges: bytes
 ```
 
 
@@ -216,6 +224,67 @@ nginx version: nginx/1.21.3
 #### External DNS
 
 To verify if the [External DNS](https://github.com/helm/charts/tree/master/stable/external-dns) works correctly.
+
+Create the following sample application to test that ExternalDNS works.
+
+```shell
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-k8s-lb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-k8s-lb
+  template:
+    metadata:
+      labels:
+        app: hello-k8s-lb
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: paulbouwer/hello-kubernetes:1.5
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-k8s-lb
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: hello-svc.innovorder.io
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: hello-k8s-lb
+EOF
+```
+
+After roughly two minutes check that a corresponding DNS record for your service was created
+
+```bash
+gcloud dns record-sets list \
+	--zone "innovorder-io-zone" \
+    --name "hello-svc.innovorder.io" \
+    --project=innovorder-infra
+```
+
+Output
+
+```shell
+NAME                      TYPE  TTL  DATA                       
+hello-svc.innovorder.io.  A     300  ip-@
+hello-svc.innovorder.io.  TXT   300  "heritage=external-dns,external-dns/owner=default,external-dns/resource=service/default/hello-k8s-lb" 
+```
+
+<p align="center"> <img  src="../images/external-dns-verification.png" /> </p>
 
 #### Cleaning Up
 To delete the compute resources created during the test
