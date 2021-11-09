@@ -217,7 +217,8 @@ nginx version: nginx/1.21.3
 
 To verify if the [External DNS](https://github.com/helm/charts/tree/master/stable/external-dns) works correctly.
 
-
+#### Cleaning Up
+To delete the compute resources created during the test
 
 ------
 
