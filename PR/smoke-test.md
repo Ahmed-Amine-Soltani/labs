@@ -6,7 +6,13 @@ Smoke test is a series of tests to ensure your Kubernetes cluster is functioning
 
 To verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
 
-Create a secret and create a pod with the secret as an environment variable and print it to the logs:
+Create a generic secret:
+
+```shell
+kubectl create secret generic test-secret --from-literal="mykey=mydata"
+```
+
+Create a pod with the secret as an environment variable and print it to the logs:
 
 ```shell
 kubectl apply -f test-secret-env-pod.yaml
@@ -16,15 +22,6 @@ or
 
 ```shell
 cat <<EOF | kubectl apply -f -
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: test-secret
-type: kubernetes.io/basic-auth
-stringData:
-  mykey: mydata
----
 apiVersion: v1
 kind: Pod
 metadata:
@@ -52,6 +49,10 @@ kubectl logs secret-env-pod
 ```
 
 Output
+
+```shell
+mydata
+```
 
 
 
@@ -130,6 +131,18 @@ curl --head http://127.0.0.1:8080
 
 Output
 
+```shell
+HTTP/1.1 200 OK
+Server: nginx/1.21.3
+Date: Tue, 09 Nov 2021 08:35:06 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 07 Sep 2021 15:21:03 GMT                                                         
+Connection: keep-alive                                                           
+ETag: "6137835f-267"                                                                     
+Accept-Ranges: bytes 
+```
+
 
 
 #### Logs
@@ -143,6 +156,10 @@ kubectl logs $POD_NAME
 ```
 
 Output
+
+```bash
+127.0.0.1 - - [09/Nov/2021:08:35:06 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.68.0" "-"
+```
 
 
 
@@ -190,9 +207,15 @@ curl --head http://${EXTERNAL_IP}
 
 Output
 
+```
+nginx version: nginx/1.21.3
+```
+
 
 
 #### External DNS
+
+To verify if the [External DNS](https://github.com/helm/charts/tree/master/stable/external-dns) works correctly.
 
 
 
