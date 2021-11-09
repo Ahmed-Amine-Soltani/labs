@@ -289,6 +289,17 @@ hello-svc.innovorder.io.  TXT   300  "heritage=external-dns,external-dns/owner=d
 #### Cleaning Up
 To delete the compute resources created during the test
 
+```
+kubectl delete secrets test-secret
+kubectl delete pod secret-env-pod
+kubectl delete deployments.apps test-nginx
+kubectl delete svc test-nginx
+kubectl delete deployments.apps hello-k8s-lb
+kubectl delete svc hello-k8s-lb
+```
+
+
+
 ------
 
 source: [link](https://github.com/jamesward/kubernetes-the-easy-way/blob/master/docs/13-smoke-test.md)
