@@ -284,7 +284,7 @@ hello-svc.innovorder.io.  A     300  ip-@
 hello-svc.innovorder.io.  TXT   300  "heritage=external-dns,external-dns/owner=default,external-dns/resource=service/default/hello-k8s-lb" 
 ```
 
-<p align="center"> <img  src="../images/external-dns-verification.png" /> </p>
+<p align="center"> <img src="https://i.ibb.co/zW3PtgL/external-dns-verification.png" alt="external-dns-verification" border="0"> </p>
 
 #### Cleaning Up
 To delete the compute resources created during the test
