@@ -1,4 +1,4 @@
-#### haproxy modifications
+### haproxy modifications
 
 ##### to define basic authentication on HAProxy
 
@@ -60,3 +60,6 @@ restart haproxy service
 $ systemctl restart haproxy.service
 ```
 
+##### HAProxy Exporter
+
+we can remove haproxy-exporter, we installed it at the k8s cluster level.
