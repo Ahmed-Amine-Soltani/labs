@@ -62,4 +62,4 @@ $ systemctl restart haproxy.service
 
 ##### HAProxy Exporter
 
-we can remove haproxy-exporter, we installed it at the k8s cluster level.
+we can remove haproxy-exporter, we have already installed it at the k8s (gke-app-infra) cluster level.
