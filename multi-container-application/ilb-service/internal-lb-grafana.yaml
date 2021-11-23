@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ilb-service
+  namespace: monitoring
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+    #networking.gke.io/internal-load-balancer-allow-global-access: "true"
+    external-dns.alpha.kubernetes.io/hostname: prometheus.ilb.infra.inno
+  labels:
+    app: hello
+spec:
+  type: LoadBalancer
+  #loadBalancerIP: 10.251.0.100
+  selector:
+    app.kubernetes.io/name: prometheus
+    prometheus: kube-prometheus-stack-prometheus 
+  ports:
+  - port: 80
+    targetPort: 9090
+    protocol: TCP
