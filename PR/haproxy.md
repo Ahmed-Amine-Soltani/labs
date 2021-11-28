@@ -44,15 +44,15 @@ to create the pem certificate
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem
 cat key.pem >> cert.pem
 rm key.pem
-mkdir -p /tmp/cert
-mv cert.pem /tmp/cert
+mkdir -p /etc/haproxy/cert
+mv cert.pem /etc/haproxy/cert
 ```
 
 enable ssl option and add the path to the certificate
 
 ```cfg
 frontend stats
-  bind :9000 ssl crt /tmp/cert/cert.pem
+  bind :9000 ssl crt /etc/haproxy/cert/cert.pem
   [..]
 ```
 
