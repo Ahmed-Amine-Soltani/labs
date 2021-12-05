@@ -108,7 +108,7 @@ external dns helm chart
 https://medium.com/swlh/extending-gke-with-externaldns-d02c09157793
 
 
-
+use vpn & workspaces
 
 
 
