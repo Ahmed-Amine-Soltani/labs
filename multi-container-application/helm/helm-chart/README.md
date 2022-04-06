@@ -4,7 +4,7 @@
 helm repo add ahmed-postgres https://ahmed-amine-soltani.github.io/labs/multi-container-application/helm/helm-chart/postgres
 ```
 ```bash
-helm uninstall postgres --set username=postgres-username --set  password=postgres-password ahmed-postgres/multi-container-postgres
+helm install postgres --set username=postgres-username --set  password=postgres-password ahmed-postgres/multi-container-postgres
 ```
 
 ##### redis
