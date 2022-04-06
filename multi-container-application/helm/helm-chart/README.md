@@ -46,9 +46,9 @@ env-values.yaml
 ```yaml
 env:
   - name: REDIS_HOST
-  - value: redis-service
+    value: redis-service
   - name: REDIS_PORT
-  - value: 6379
+    value: 6379
 ```
 
 ```bash
