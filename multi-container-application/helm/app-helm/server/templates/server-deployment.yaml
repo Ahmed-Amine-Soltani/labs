@@ -27,14 +27,14 @@ spec:
                 value: {{ .value | quote }}
               {{- end }} 
               
-              - name: PGUSER
-                valueFrom:
-                  secretKeyRef:
-                    key:  username
-                    name: pg-auth
+              #- name: PGUSER
+                #valueFrom:
+                  #secretKeyRef:
+                    #key:  username
+                    #name: pg-auth
 
-              - name: PGPASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    key:  password
-                    name: pg-auth
+              #- name: PGPASSWORD
+                #valueFrom:
+                  #secretKeyRef:
+                    #key:  password
+                    #name: pg-auth
