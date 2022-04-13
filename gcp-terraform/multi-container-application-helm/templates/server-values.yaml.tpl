@@ -4,11 +4,11 @@ service:
 
 env:
    - name: REDIS_HOST
-     value: redis-service 
+     value: 10.159.94.107
    - name: REDIS_PORT
      value: 6379
    - name: PGHOST
-     value: database-1.cas6eiunvfhz.eu-central-1.rds.amazonaws.com
+     value: database-pfe.cas6eiunvfhz.eu-central-1.rds.amazonaws.com 
    - name: PGPORT
      value: 5432
    - name: PGDATABASE
@@ -16,4 +16,4 @@ env:
    - name: PGUSER
      value: admin123
    - name: PGPASSWORD
-     value: azerty123
+     value: ${postgres_password}

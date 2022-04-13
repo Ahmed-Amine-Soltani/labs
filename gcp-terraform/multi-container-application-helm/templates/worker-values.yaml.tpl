@@ -8,6 +8,6 @@ deployment:
 
 env:
   - name: REDIS_HOST
-    value: redis-service
+    value: 10.159.94.107
   - name: REDIS_PORT
     value: 6379
