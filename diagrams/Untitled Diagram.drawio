@@ -1,1 +1,55 @@
-<mxfile host="app.diagrams.net" modified="2022-04-17T23:57:11.904Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.88 Safari/537.36" version="17.4.5" etag="SpEXkqUTpZo913_9NdFv" type="github"><diagram id="fzNt_yE2hAS-4-XZFBAx">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-04-18T00:03:31.655Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.88 Safari/537.36" etag="-CmHK7tOXA_rvNRfQliI" version="17.4.5" type="github">
+  <diagram id="fzNt_yE2hAS-4-XZFBAx" name="Page-1">
+    <mxGraphModel dx="942" dy="586" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-1" target="nVUdK5jwM3S-4avnmVAc-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-1" value="L&#39;utilisateur soumet le numéro" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="235" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-2" target="nVUdK5jwM3S-4avnmVAc-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-2" value="React App" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="414" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-3" target="nVUdK5jwM3S-4avnmVAc-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.45;entryY=0.017;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-3" target="nVUdK5jwM3S-4avnmVAc-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-3" value="Express Server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="414" y="264" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-4" value="Postgres" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="492" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-5" target="nVUdK5jwM3S-4avnmVAc-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-5" value="Worker" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="344" y="445" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nVUdK5jwM3S-4avnmVAc-6" target="nVUdK5jwM3S-4avnmVAc-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-6" value="Redis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="344" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-13" value="Stocke tous les indices et valeurs calculées sous forme de paires clé-valeur" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="167" y="375" width="173" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-14" value="regarde redis pour de nouveaux indices. &lt;br&gt;Tirez chaque nouvel indice, calculez la nouvelle valeur puis remettez-la dans redis" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="298.5" y="531" width="211" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="nVUdK5jwM3S-4avnmVAc-15" value="Stocke une liste permanente des index qui ont été reçus" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="464" y="424" width="164" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
