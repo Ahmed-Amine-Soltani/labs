@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  multi-container-worker:
+  - apiVersion: v2
+    created: "2021-10-15T14:06:54.887325014+02:00"
+    description: A Helm chart for worker micro-service
+    digest: de5b169a6469658119ee0a016e248948dfe89b9b38f09543b8a7cf4326cb44c9
+    icon: https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png
+    name: multi-container-worker
+    urls:
+    - multi-container-worker-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-15T14:06:54.886292898+02:00"

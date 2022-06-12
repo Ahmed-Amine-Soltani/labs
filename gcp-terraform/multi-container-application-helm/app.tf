@@ -11,6 +11,7 @@ resource "helm_release" "ahmed-worker" {
   repository       = "https://ahmed-amine-soltani.github.io/labs/multi-container-application/helm/helm-chart/worker"
   chart            = "multi-container-worker"
   namespace        = "default"
+  version          = "0.2.0"
   create_namespace = true
 
   values = [
